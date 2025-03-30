@@ -8,7 +8,7 @@ export class Player {
     constructor() {
         this.speed = 5;
         const image = new Image();
-        image.src = "resources/player.png";
+        image.src = "./resources/player.png";
         this.texture = image;
         this.size = new Vec2D(image.width, image.height);
         this.position = new Vec2D((gameCanvas.width - this.size.x) / 2, (gameCanvas.height - this.size.y) - 50);

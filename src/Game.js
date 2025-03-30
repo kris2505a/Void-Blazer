@@ -1,6 +1,5 @@
 import { context, gameCanvas } from "./Renderer.js";
 import { Player } from "./Player.js";
-import { Enemy } from "./Enemy.js";
 import { keys, initInputs } from "./Input.js";
 
 export class Game {

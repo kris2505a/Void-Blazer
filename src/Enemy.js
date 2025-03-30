@@ -1,6 +1,4 @@
 import { context, gameCanvas } from "./Renderer.js";
-import { keys, initInputs } from "./Input.js";
-import { Bullet } from "./Bullet.js";
 import { Vec2D } from "./Vec2D.js";
 import { Collider } from "./Collider.js";
 
