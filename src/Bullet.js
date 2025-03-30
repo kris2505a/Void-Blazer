@@ -8,7 +8,7 @@ export class Bullet {
         this.speed = 10;
         this.texture = null;
         const image = new Image();
-        image.src = "resources/bullet.png";
+        image.src = "./resources/bullet.png";
         image.onload = () => { this.texture = image; };
         this.size = new Vec2D(image.width, image.height);
         this.hit = false;

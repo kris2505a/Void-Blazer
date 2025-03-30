@@ -7,7 +7,7 @@ export class Enemy {
         this.position = new Vec2D(xPos, yPos);
         this.speed = 5;
         const image = new Image();
-        image.src = "resources/enemy.png";
+        image.src = "./resources/enemy.png";
         image.onload = () => { this.texture = image; };
         this.size = new Vec2D(image.width, image.height);
         this.destroyed = false;

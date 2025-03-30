@@ -9,7 +9,7 @@ export class Player {
         this.speed = 5;
         this.texture = null;
         const image = new Image();
-        image.src = "resources/player.png";
+        image.src = "./resources/player.png";
         image.onload = () => { this.texture = image; };
         this.size = new Vec2D(image.width, image.height);
         this.position = new Vec2D(
