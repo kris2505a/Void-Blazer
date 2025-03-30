@@ -7,20 +7,30 @@ import { Collider } from "./Collider.js";
 export class Player {
     constructor() {
         this.speed = 5;
+        this.texture = null;
+
         const image = new Image();
-        image.src = "./resources/player.png";
-        this.texture = image;
-        this.size = new Vec2D(image.width, image.height);
-        this.position = new Vec2D((gameCanvas.width - this.size.x) / 2, (gameCanvas.height - this.size.y) - 50);
+        image.src = "resources/player.png";
+        image.onload = () => {
+            this.texture = image;
+        };
+
+        this.size = new Vec2D(50, 50);
+        this.position = new Vec2D(
+            (gameCanvas.width - this.size.x) / 2,
+            (gameCanvas.height - this.size.y) - 50
+        );
+
         this.ammo = [];
         this.coolDown = 0;
         this.collider = new Collider(this.position, this.size);
-
     }
 
     render() {
-        context.drawImage(this.texture, this.position.x, this.position.y, this.size.x, this.size.y);
-        for(let i of this.ammo) {
+        if (this.texture) {
+            context.drawImage(this.texture, this.position.x, this.position.y, this.size.x, this.size.y);
+        }
+        for (let i of this.ammo) {
             i.render();
         }
     }
@@ -46,6 +56,7 @@ export class Player {
             var bulletPos = new Vec2D(this.position.x, this.position.y);
             bulletPos.x += this.size.x / 2 - 6;
             this.ammo.push(new Bullet(bulletPos));
+            console.log(bulletPos.x, bulletPos.y);
             this.coolDown = 40;
 
         }
