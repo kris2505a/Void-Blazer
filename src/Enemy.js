@@ -19,7 +19,6 @@ export class Enemy {
         if (!this.texture || !this.texture.complete) 
             return;
         context.drawImage(this.texture, this.position.x, this.position.y, this.size.x, this.size.y);
-        for (let i of this.ammo) {
     }
 
     update() {
