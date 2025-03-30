@@ -49,7 +49,7 @@ export class Game {
         this.enemy = this.enemy.filter(enemy => !enemy.destroyed);
         
         if(this.enemy.length === 0){
-            if (this.enemyWave >= 2) 
+            if (this.enemyWave >= 4) 
                 this.enemyWave = 0;
             else 
                 this.enemyWave++;
