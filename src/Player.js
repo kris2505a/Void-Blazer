@@ -23,11 +23,9 @@ export class Player {
     }
 
     render() {
-        if(!this.texture)
+        if (!this.texture || !this.texture.complete) 
             return;
-        if (this.texture) {
-            context.drawImage(this.texture, this.position.x, this.position.y, this.size.x, this.size.y);
-        }
+        context.drawImage(this.texture, this.position.x, this.position.y, this.size.x, this.size.y);
         for (let i of this.ammo) {
             i.render();
         }
