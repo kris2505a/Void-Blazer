@@ -1,17 +1,16 @@
 import { Vec2D } from "./Vec2D.js";
 
 export class Collider {
-    constructor(pos, size) {
-        this.position = new Vec2D(pos.x, pos.y);
-        this.size = new Vec2D(size.x, size.y);
+    constructor(entity) {
+        this.entity = entity; // Store reference
     }
 
     isCollided(target) {
         return (
-            this.position.x < target.position.x + target.size.x &&
-            this.position.x + this.size.x > target.position.x &&
-            this.position.y < target.position.y + target.size.y &&
-            this.position.y + this.size.y > target.position.y
+            this.entity.position.x < target.entity.position.x + target.entity.size.x &&
+            this.entity.position.x + this.entity.size.x > target.entity.position.x &&
+            this.entity.position.y < target.entity.position.y + target.entity.size.y &&
+            this.entity.position.y + this.entity.size.y > target.entity.position.y
         );
     }
 }

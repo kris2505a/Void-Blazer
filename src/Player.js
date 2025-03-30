@@ -8,14 +8,10 @@ export class Player {
     constructor() {
         this.speed = 5;
         this.texture = null;
-
         const image = new Image();
         image.src = "resources/player.png";
-        image.onload = () => {
-            this.texture = image;
-        };
-
-        this.size = new Vec2D(50, 50);
+        image.onload = () => { this.texture = image; };
+        this.size = new Vec2D(image.width, image.height);
         this.position = new Vec2D(
             (gameCanvas.width - this.size.x) / 2,
             (gameCanvas.height - this.size.y) - 50
@@ -23,10 +19,12 @@ export class Player {
 
         this.ammo = [];
         this.coolDown = 0;
-        this.collider = new Collider(this.position, this.size);
+        this.collider = new Collider(this);
     }
 
     render() {
+        if(!this.texture)
+            return;
         if (this.texture) {
             context.drawImage(this.texture, this.position.x, this.position.y, this.size.x, this.size.y);
         }
@@ -56,10 +54,18 @@ export class Player {
             var bulletPos = new Vec2D(this.position.x, this.position.y);
             bulletPos.x += this.size.x / 2 - 6;
             this.ammo.push(new Bullet(bulletPos));
-            console.log(bulletPos.x, bulletPos.y);
             this.coolDown = 40;
 
         }
+    }
 
+    hit(enemy) {
+        for(let i of this.ammo) {
+            if(i.collider.isCollided(enemy.collider)){
+                i.hit = true;
+                return true;
+            }
+        }
+        return false;
     }
 }

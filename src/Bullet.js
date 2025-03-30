@@ -9,15 +9,15 @@ export class Bullet {
         this.texture = null;
         const image = new Image();
         image.src = "resources/bullet.png";
-        image.onload = () => {
-            this.texture = image;
-        };
+        image.onload = () => { this.texture = image; };
         this.size = new Vec2D(image.width, image.height);
         this.hit = false;
-        this.collider = new Collider(this.position, this.size);
+        this.collider = new Collider(this);
     }
     
     render() {
+        if(!this.texture)
+            return;
         context.drawImage(this.texture, this.position.x, this.position.y, this.size.x, this.size.y);
     }
 

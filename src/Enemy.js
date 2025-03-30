@@ -8,14 +8,16 @@ export class Enemy {
         this.speed = 5;
         const image = new Image();
         image.src = "resources/enemy.png";
-        this.texture = image;
+        image.onload = () => { this.texture = image; };
         this.size = new Vec2D(image.width, image.height);
         this.destroyed = false;
         this.moveTimer = 0;
-        this.collider = new Collider(this.position, this.size);
+        this.collider = new Collider(this);
     }
 
     render() {
+        if(!this.texture)
+            return;
         context.drawImage(this.texture, this.position.x, this.position.y, this.size.x, this.size.y);
     }
 
