@@ -74,7 +74,18 @@ export class Game {
                 this.score++;
                 this.updateScoreUI();
             }
+
+            if(this.player.collider.isCollided(i.collider))
+                this.reset();
         }
+    }
+
+    reset() {
+        this.player = new Player();
+        this.enemyWave = 1;
+        this.score = 0;
+        this.enemy = [];
+        this.createEnemy(this.enemyWave);
     }
 
     handleInput() {
