@@ -9,3 +9,19 @@ canvas {
     display: block;
 }
 
+#Disp {
+    background-color: black;
+    display: flex;
+    gap: 10px;
+}
+
+#scoreDisp {
+    font-size: 25px;
+    color: white;
+}
+
+#levelDisp {
+    font-size: 25px;
+    color: #ffffff;
+}
+

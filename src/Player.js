@@ -14,7 +14,7 @@ export class Player {
         this.size = new Vec2D(image.width, image.height);
         this.position = new Vec2D(
             (gameCanvas.width - this.size.x) / 2,
-            (gameCanvas.height - this.size.y) - 50
+            (gameCanvas.height - this.size.y) - 100
         );
 
         this.ammo = [];
@@ -38,6 +38,8 @@ export class Player {
         }
         if(this.coolDown > 0)
             this.coolDown--;
+
+        this.limitPlayer();
     }
 
     handleInput() {
@@ -66,4 +68,12 @@ export class Player {
         }
         return false;
     }
+
+    limitPlayer() {
+        if (this.position.x < 0)
+            this.position.x = 0;
+        if (this.position.x > innerWidth - this.size.x)
+            this.position.x = innerWidth - this.size.x;
+    }
+
 }

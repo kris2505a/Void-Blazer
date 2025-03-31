@@ -9,8 +9,18 @@ export class Game {
         this.player = new Player();
         this.enemy = [];
         this.score = 0;
+        this.scoreUI = document.getElementById("scoreDisp");
         this.enemyWave = 1;
+        this.levelUI = document.getElementById("levelDisp");
         this.createEnemy(this.enemyWave);
+    }
+
+    updateScoreUI() {
+        this.scoreUI.innerText = `Score: ${this.score}`;
+    }
+
+    updateLevelUI() {
+        this.levelUI.innerText = `Level: ${this.enemyWave}`;
     }
 
     createEnemy(lines) {
@@ -54,6 +64,7 @@ export class Game {
             else 
                 this.enemyWave++;
             this.createEnemy(this.enemyWave);
+            this.updateLevelUI();
         }
         this.player.update();
         for(let i of this.enemy) {
@@ -61,6 +72,7 @@ export class Game {
             if(this.player.hit(i))  {
                 i.destroyed = true;
                 this.score++;
+                this.updateScoreUI();
             }
         }
     }
@@ -68,4 +80,5 @@ export class Game {
     handleInput() {
         this.player.handleInput();
     }
+
 }
